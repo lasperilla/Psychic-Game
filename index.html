@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/ico" sizes="16x16">
+    <title>Psychic</title>
+
+    <style type="text/css">
+      body {
+      margin-top: 60px;
+      margin-bottom: 30px;
+      }
+    footer {
+    height: 5%;
+    color: #9D9D95;
+    text-align: center;
+    padding: 10px;
+}
+.gamewindow {
+  padding: 50px;
+}
+    </style>
+  </head>
+  <body>
+      <!-- nav bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Psychic Game</a>
+            </div>
+<!--             <div id="navbar" class="navbar-collapse collapse navbar-right" aria-expanded="false" style="height: 0.8px;">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">About</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div> -->
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="jumbotron gamewindow" id="game">
+      <p>Press r, p or s to start playing!</p>
+    </div>
+
+    <script type="text/javascript">
+
+      var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+      var wins = 0;
+      var losses = 0;
+      var ties = 0;
+
+      document.onkeyup = function(event) {
+
+        var userGuess = event.key;
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+        alert("User picks " +userGuess)
+        alert("Computer picks " +computerGuess)
+        // This is the logic that determines who wins the game.
+        if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {
+
+          // If we choose rock and the computer guesses scissors, increment our wins variable.
+          if ((userGuess === "r") && (computerGuess === "s")) {
+            wins++;
+          }
+
+          // If we choose rock and the computer guesses paper, increment our losses variable.
+          if ((userGuess === "r") && (computerGuess === "p")) {
+            losses++;
+          }
+
+          // If we choose scissors and the computer guesses rock, increment our losses variable.
+          if ((userGuess === "s") && (computerGuess === "r")) {
+            losses++;
+          }
+
+          // If we choose scissors and the computer guesses paper, increment our wins variable.
+          if ((userGuess === "s") && (computerGuess === "p")) {
+            wins++;
+          }
+
+          // If we choose paper and the computer guesses rock, increment our wins variable.
+          if ((userGuess === "p") && (computerGuess === "r")) {
+            wins++;
+          }
+
+          // If we choose paper and the computer guesses scissors, increment our losses variable.
+          if ((userGuess === "p") && (computerGuess === "s")) {
+            losses++;
+          }
+
+          // If we choose the same thing as the computer, increment our ties variable.
+          if (userGuess === computerGuess) {
+            ties++;
+          }
+
+          var html = "<p>Press r, p or s to start playing!</p>" +
+          "<p>wins: " + wins + "</p>" +
+          "<p>losses: " + losses + "</p>" +
+          "<p>ties: " + ties + "</p>";
+
+          document.querySelector("#game").innerHTML = html;
+
+        }
+      }
+
+    </script>
+    <!-- footer -->
+    <footer class="footer-bottom col-xs-12 navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <p>© Copyright 2017 Lawrence Asperilla</p>
+            </div>
+        </div>
+    </footer>
+
+  </body>
+</html>
