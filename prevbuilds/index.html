@@ -64,32 +64,45 @@
    
 
     document.onkeyup = function(event) {
+ var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        // for (var i = 0; i < 5; i++) {
+        // only reset computerGuess on new game/when tries resets to 5
 
-      var userGuess = event.key;
+        // if (tries = 5) {
+            var userGuess = event.key;
             console.log("computer: " + computerGuess);
             console.log("user: " + userGuess);
             console.log("-------")
 
+            // only evaluate win/loss if user enters a value found in computerChoices (i.e a letter)
             if (computerChoices.indexOf(userGuess) !== -1) {
+                // if userGuess matches computerGuess       
                 if (userGuess === computerGuess) {
                     wins++;
                     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
                     tries = 5;
+                    // leave loop when wins hits 3 
                     if (wins > 3) {
                         i = 9001;
                         console.log("wins: "+wins)
                         alert("you are the winrar!")
                     }
+                    // if user does match computerGuess then, tally 1 win, reset tries to 5, 
                 } else {
                     tries--;
+                    // if tries hits zero, tally 1 loss, and reset tries to 5, change compguess
                     if (tries = 0) {
                         losses++;
                         tries = 5
                         var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
                     }
+                    // } else {
+                    //     i = 0;
+                    // }
                 }
+            /*}*/
+            // }
         }
         var html = "<p>Press any letter to start playing!</p>" +
             "<p>wins: " + wins + "</p>" +
