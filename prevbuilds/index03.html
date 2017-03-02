@@ -24,13 +24,6 @@
     .gamewindow {
         padding: 50px;
     }
-
-    #yohane {
-        width: 400px;
-        height: auto;
-        margin: 0 auto;
-        margin-bottom: 20px;
-    }
     </style>
 </head>
 
@@ -51,7 +44,6 @@
     </nav>
     <div class="container">
         <div class="jumbotron gamewindow" id="game">
-            <img src="assets/images/yohane.jpg" id="yohane" class="img-responsive img-rounded">
             <p>Guess what letter I'm thinking of. Press any letter to start.</p>
         </div>
     </div>
@@ -63,12 +55,9 @@
     var tries = 9;
     // declare an array where we're going to put in user guesses.
     var lettersGuessed = ["_", "_", "_", "_", "_", "_", "_", "_", "_"];
-    // randomly assign computer guess to a value from computerChoices array we made before
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    // was having problems with computerGuess not staying the same when user hit a key, so made a variable to hold computerGuess value and stay.
     var compGuessHolder = computerGuess;
 
-    // function to be called on to reset game if user wins or loses (assign new comp choice, reset tries, guessed letters)
     function reset() {
         var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
         tries = 9;
@@ -77,39 +66,32 @@
     }
 
     document.onkeyup = function(event) {
-            //user guess is key that user hits
+
             var userGuess = event.key;
-            // variable takes userGuess, makes it lower case, and stores it in userGuessLower for comparison sake later
             var userGuessLower = userGuess.toLowerCase();
 
-            // console.log("(computerChoices.indexOf(userGuessLower) !== -1):")
-            // console.log(computerChoices.indexOf(userGuessLower) !== -1);
+            console.log("(computerChoices.indexOf(userGuessLower) !== -1):")
+            console.log(computerChoices.indexOf(userGuessLower) !== -1);
 
-            // only do game processes (win/loss conditions, modify tries, guessed letters,etc) if user types a letter found in computerChoices array (any letter between a-z). Used userGuessLower in case they type a letter in caps, make it lower when comparing it to the values in our array which are all lower case. if user hits a key not a letter, value is not found in array, returns a value of -1 -> doesn't meet the condition of our if statement.
             if (computerChoices.indexOf(userGuessLower) !== -1) {
-                
-              //commented out. redundant after I added letters guessed to gameplay
-                // places user guess into lettersGuessed array, replacing "_" value at index arraylength - #oftries 
-                // lettersGuessed[(lettersGuessed.length - tries)] = userGuess;
-                // console.log("guesses----------")
-                // for (var i = 0; i < lettersGuessed.length; i++) {
-                //     console.log(lettersGuessed[i]);
-                //     console.log(".")
-                // }
-                // console.log("----------")
+                lettersGuessed[(lettersGuessed.length - tries)] = userGuess
+                console.log("guesses----------")
+                for (var i = 0; i < lettersGuessed.length; i++) {
+                    console.log(lettersGuessed[i]);
+                    console.log(".")
+                }
+                console.log("----------")
 
-                //at this point, if user had hit a letter - check to see if they meet win or loss conditions
-                //if lowercase value of userGuess is equal to what's in compGuessHolder, add a win, alert user, and call on reset() function to reset to a new game automatically. 
-                //if lowercase value of userGuess is not equal to what's in compGuessHolder, add userGuess (uppercased) to lettersGuessed array at index (length -tries) (so first one will be at (9-9) = index 0). and then deduct one try
+
+
                 if (userGuessLower === compGuessHolder) {
                     wins++;
                     alert("You are the winrar! Computer guessed " + compGuessHolder.toUpperCase() + ".");
                     console.log("***WIN***");
                     reset();
                 } else {
-                    lettersGuessed[(lettersGuessed.length - tries)] = userGuess.toUpperCase();
+                    lettersGuessed[(9 - tries)] = userGuess.toUpperCase();
                     tries--;
-                    //after deducting a try, evaluate whether or not the user has run out of tries. if they ran out, user takes a big L and we reset the game by calling on our reset function.
                     if (tries === 0) {
                         losses++;
                         console.log("***LOSS***");
@@ -118,14 +100,13 @@
                 }
             }
 
-            // console.log("user " + userGuess);
-            // console.log("user lower " + userGuessLower);
-            // console.log("comp " + computerGuess);
-            // console.log("compholder " + compGuessHolder);
 
-            //print out win, loss, and try tally. print out values from letterGuessed arrays with spaces between. replace div id game contents with this  
-            var html = "<img src=\"assets/images/yohane.jpg\" id=\"yohane\" class=\"img-responsive img-rounded\">" +
-                "<p>Guess what letter I'm thinking of. Press any letter to start.</p>" +
+            console.log("user " + userGuess);
+            console.log("user lower " + userGuessLower);
+            console.log("comp " + computerGuess);
+            console.log("compholder " + compGuessHolder);
+
+            var html = "<p>Guess what letter I'm thinking of. Press any letter to start.</p>" +
                 "<p>Wins: " + wins + "</p>" +
                 "<p>Losses: " + losses + "</p>" +
                 "<p>Guesses left: " + tries + "</p>" +
