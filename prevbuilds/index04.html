@@ -66,14 +66,14 @@
     // randomly assign computer guess to a value from computerChoices array we made before
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     // was having problems with computerGuess not staying the same when user hit a key, so made a variable to hold computerGuess value and stay.
-    //resolving problem was due to me having "var computerGuess =" in reset function instead of just "computerGuess"
-    // var compGuessHolder = computerGuess;
+    var compGuessHolder = computerGuess;
 
     // function to be called on to reset game if user wins or loses (assign new comp choice, reset tries, guessed letters)
     function reset() {
         computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
         tries = 9;
         lettersGuessed = ["_", "_", "_", "_", "_", "_", "_", "_", "_"];
+        compGuessHolder = computerGuess;
     }
 
     document.onkeyup = function(event) {
@@ -101,9 +101,9 @@
                 //at this point, if user had hit a letter - check to see if they meet win or loss conditions
                 //if lowercase value of userGuess is equal to what's in compGuessHolder, add a win, alert user, and call on reset() function to reset to a new game automatically. 
                 //if lowercase value of userGuess is not equal to what's in compGuessHolder, add userGuess (uppercased) to lettersGuessed array at index (length -tries) (so first one will be at (9-9) = index 0). and then deduct one try
-                if (userGuessLower === computerGuess) {
+                if (userGuessLower === compGuessHolder) {
                     wins++;
-                    alert("You are the winrar! Computer guessed " + computerGuess.toUpperCase() + ".");
+                    alert("You are the winrar! Computer guessed " + compGuessHolder.toUpperCase() + ".");
                     console.log("***WIN***");
                     reset();
                 } else {
@@ -118,9 +118,9 @@
                 }
             }
 
-            console.log("user " + userGuess);
-            console.log("user lower " + userGuessLower);
-            console.log("comp " + computerGuess);
+            // console.log("user " + userGuess);
+            // console.log("user lower " + userGuessLower);
+            // console.log("comp " + computerGuess);
             // console.log("compholder " + compGuessHolder);
 
             //print out win, loss, and try tally. print out values from letterGuessed arrays with spaces between. replace div id game contents with this  
