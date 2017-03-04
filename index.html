@@ -66,7 +66,8 @@
     // randomly assign computer guess to a value from computerChoices array we made before
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     // was having problems with computerGuess not staying the same when user hit a key, so made a variable to hold computerGuess value and stay.
-    //resolving problem was due to me having "var computerGuess =" in reset function instead of just "computerGuess"
+    //***resolving problem was due to me having "var computerGuess =" in reset function instead of just "computerGuess"
+    //***removing compGuessHolder from code.
     // var compGuessHolder = computerGuess;
 
     // function to be called on to reset game if user wins or loses (assign new comp choice, reset tries, guessed letters)
