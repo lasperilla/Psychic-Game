@@ -60,9 +60,9 @@
     var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     var wins = 0;
     var losses = 0;
-    var tries = 9;
     // declare an array where we're going to put in user guesses.
     var lettersGuessed = ["_", "_", "_", "_", "_", "_", "_", "_", "_"];
+    var tries = lettersGuessed.length;
     // randomly assign computer guess to a value from computerChoices array we made before
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     // was having problems with computerGuess not staying the same when user hit a key, so made a variable to hold computerGuess value and stay.
