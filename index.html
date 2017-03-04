@@ -93,7 +93,8 @@
             // console.log(computerChoices.indexOf(userGuessLower) !== -1);
 
             // only do game processes (win/loss conditions, modify tries, guessed letters,etc) if user types a letter found in computerChoices array (any letter between a-z). Used userGuessLower in case they type a letter in caps, make it lower when comparing it to the values in our array which are all lower case. if user hits a key not a letter, value is not found in array, returns a value of -1 -> doesn't meet the condition of our if statement.
-            if (computerChoices.indexOf(userGuessLower) !== -1) {
+            //added second condition to not proceed if user hits a letter they already guessed wrong
+            if (computerChoices.indexOf(userGuessLower) !== -1 && lettersGuessed.indexOf(userGuess.toUpperCase()) === -1) {
                 
               //commented out. redundant after I added letters guessed to gameplay
                 // places user guess into lettersGuessed array, replacing "_" value at index arraylength - #oftries 
